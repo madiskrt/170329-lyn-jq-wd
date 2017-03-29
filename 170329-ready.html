@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<title></title>
+	<style type="text/css">
+		li {width: 150px; height: 50px; background-color: cyan; border: 1px solid blue;}
+		.selected {background-color: yellow;}
+		#js-warning { display: none; }
+		.js #js-warning {display: none;}
+	</style>
+</head><body>
+<div id="header" role="banner"></div>
+<div id="content">
+	<ul id="grid">
+		<li></li>
+		<li><span>2</span></li>
+		<li></li>
+	</ul>
+
+	<a id="link1" href="#">Link 1</a>
+	<p>Some p text here</p>
+
+	<ul id="yels">
+		<li class="selected">
+			<ul>
+				<li></li>
+				<li><a href="#">link2</a></li>
+			</ul>
+		</li>
+		<li class="selected"></li>
+		<li class="selected"></li>
+	</ul>
+</div>
+
+<p id="js-warning">This example uses JavaScript</p>
+
+<script>
+	
+$('[role=banner]').length; //select attributes
+console.log($('[role=banner]').length);
+
+$('li > ul').length; //all ul-s that are children of li-s
+console.log($('li > ul').length);
+
+$('#content').find('a').length;
+console.log($('#content').find('a').length);
+console.log($('#content').children());
+
+$('#link1').parents();
+console.log($('#link1').parents('div'));
+
+$('#link1').siblings(); //everything on the same level
+console.log($('#link1').siblings());
+
+$(document).ready(function () {
+	var $grid = $('#grid');
+	//chaining
+	var $lists = $grid.find('li')
+		.css('background', '#600')
+		.animate({width: '-=50'}, 2000).addClass('selected');
+	//$lists.css('background', '#600');
+	//$lists.animate({width: '-=100'}, 2000);
+	$lists.fadeOut();
+	$lists.fadeIn('slow');
+
+	$('#yels').find('li:nth-child(1)').removeClass('selected');
+	$('#yels').find('li:nth-child(3)').toggleClass('selected');
+
+	//$('body').addClass('js');
+});
+
+
+
+</script>
+
+</body>
+</html>
